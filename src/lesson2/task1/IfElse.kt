@@ -1,10 +1,11 @@
-@file:Suppress("UNUSED_PARAMETER")
+@file:Suppress("UNUSED_PARAMETER", "UNREACHABLE_CODE")
 
 package lesson2.task1
 
 import lesson1.task1.discriminant
 import kotlin.math.max
 import kotlin.math.sqrt
+import lesson1.task1.sqr as sqr
 
 /**
  * Пример
@@ -76,7 +77,13 @@ fun timeForHalfWay(
     t1: Double, v1: Double,
     t2: Double, v2: Double,
     t3: Double, v3: Double
-): Double = TODO()
+): Double {
+    return if (t1 * v1 >= t2 * v2 + t3 * v3) t1
+    else {
+        if (t3 * v3 >= t1 * v1 + t2 * v2) t3
+        else t1 + ((t1 * v1 + t2 * v2 + t3 * v3) / 2) / v2
+    }
+}
 
 /**
  * Простая
@@ -97,7 +104,7 @@ fun whichRookThreatens(
  * Простая
  *
  * На шахматной доске стоят черный король и белые ладья и слон
- * (ладья бьет по горизонтали и вертикали, слон — по диагоналям).
+ *(ладья бьет по горизонтали и вертикали, слон — по диагоналям).
  * Проверить, есть ли угроза королю и если есть, то от кого именно.
  * Вернуть 0, если угрозы нет, 1, если угроза только от ладьи, 2, если только от слона,
  * и 3, если угроза есть и от ладьи и от слона.
@@ -117,7 +124,17 @@ fun rookOrBishopThreatens(
  * прямоугольным (вернуть 1) или тупоугольным (вернуть 2).
  * Если такой треугольник не существует, вернуть -1.
  */
-fun triangleKind(a: Double, b: Double, c: Double): Int = TODO()
+fun triangleKind(a: Double, b: Double, c: Double): Int {
+    val x = max(a, b)
+    val longestSide = max(c, x)
+    val y = (a + b + c - longestSide) / 2
+    return when {
+        sqr(x) < (2 * sqr(y)) -> 0
+        sqr(x) > (2 * sqr(y)) -> 2
+        sqr(x) == (2 * sqr(y)) -> 1
+        else -> -1
+    }
+}
 
 /**
  * Средняя
@@ -127,4 +144,17 @@ fun triangleKind(a: Double, b: Double, c: Double): Int = TODO()
  * Найти длину пересечения отрезков AB и CD.
  * Если пересечения нет, вернуть -1.
  */
-fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int = TODO()
+fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int {
+    val x = 0
+    return if (b < c) {
+        -1
+    } else if ((a <= c) && (c < b) && (b <= d)) {
+        b - c
+    } else if ((a <= c) && (d <= b)) {
+        d - c
+    } else if ((c <= a) && (b <= d)) {
+        b - a
+    } else if ((c <= a) && (a < d) && (d <= b)) {
+        d - a
+    } else -1
+}
