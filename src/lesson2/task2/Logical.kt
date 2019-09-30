@@ -18,16 +18,7 @@ fun pointInsideCircle(x: Double, y: Double, x0: Double, y0: Double, r: Double) =
  * Четырехзначное число назовем счастливым, если сумма первых двух ее цифр равна сумме двух последних.
  * Определить, счастливое ли заданное число, вернуть true, если это так.
  */
-fun isNumberHappy(number: Int): Boolean {
-    val x = number
-    val x1 = x % 1000
-    val x2 = x1 % 100
-    val x3 = x2 % 10
-    val x4 = x - x1
-    val x5 = x1 - x2
-    val x6 = x2 - x3
-    if (x4 * x5 == x6 * x3) return true
-}
+fun isNumberHappy(number: Int): Boolean = TODO()
 
 /**
  * Простая
@@ -45,23 +36,18 @@ fun queenThreatens(x1: Int, y1: Int, x2: Int, y2: Int): Boolean = TODO()
  * Дан номер месяца (от 1 до 12 включительно) и год (положительный).
  * Вернуть число дней в этом месяце этого года по григорианскому календарю.
  */
-fun daysInMonth(month: Int, year: Int): Int
-{
-    val x1 = month
-    val x2 = year
-    return (x1;x2)()
-}
+fun daysInMonth(month: Int, year: Int): Int = TODO()
 
 /**
- * Средняя
+ * * Средняя
  *
  * Проверить, лежит ли окружность с центром в (x1, y1) и радиусом r1 целиком внутри
  * окружности с центром в (x2, y2) и радиусом r2.
  * Вернуть true, если утверждение верно
- */
+ * */
 fun circleInside(
-    x1: Double, y1: Double, r1: Double,
-    x2: Double, y2: Double, r2: Double
+x1: Double, y1: Double, r1: Double,
+x2: Double, y2: Double, r2: Double
 ): Boolean = TODO()
 
 /**
