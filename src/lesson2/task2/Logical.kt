@@ -3,7 +3,6 @@
 package lesson2.task2
 
 import lesson1.task1.sqr
-import org.graalvm.compiler.nodes.calc.NarrowNode
 import kotlin.math.min
 import kotlin.math.sqrt
 
