@@ -3,6 +3,7 @@
 package lesson3.task1
 
 import kotlin.math.max
+import kotlin.math.min
 import kotlin.math.sin
 import kotlin.math.sqrt
 
@@ -70,10 +71,11 @@ fun digitCountInNumber(n: Int, m: Int): Int =
  * Использовать операции со строками в этой задаче запрещается.
  */
 fun digitNumber(n: Int): Int {
-    var c = 1
+    if (n == 0) return 1
+    var c = 0
     var num = n
-    while (num / 10 > 0) {
-        c += 1
+    while (num != 0) {
+        c++
         num /= 10
     }
     return c
@@ -87,19 +89,13 @@ fun digitNumber(n: Int): Int {
  */
 fun fib(n: Int): Int {
     var a = 1
-    var b = 2
-    var c = 0
-    if ((n == 1) || (n == 2))
-        return 1
-    else {
-        for (i in 1..n - 2) {
-            c = a + b
-            a = b
-            b = c
-        }
-
+    var b = 1
+    for (i in 3..n) {
+        val c = b
+        b += a
+        a = c
     }
-    return c
+    return b
 }
 
 /**
@@ -109,11 +105,20 @@ fun fib(n: Int): Int {
  * минимальное число k, которое делится и на m и на n без остатка
  */
 fun lcm(m: Int, n: Int): Int {
-    var x = 0
-    while ((x % m != 0) && (x % n != 0)) {
-        x += 1
+    val max = max(m, n)
+    val min = min(m, n)
+
+
+    for (i in max..max * min step max) {
+        for (j in min..max * min step min) {
+            if (j > i) break
+            if (i == j) {
+                return i
+            }
+        }
     }
-    return x
+
+    return min * max
 }
 
 /**
@@ -167,10 +172,8 @@ fun isCoPrime(m: Int, n: Int): Boolean {
  * Например, для интервала 21..28 21 <= 5*5 <= 28, а для интервала 51..61 квадрата не существует.
  */
 fun squareBetweenExists(m: Int, n: Int): Boolean {
-    for (i in 1..m) {
-        if (m <= (i * i) && n >= (i * i)) {
-            return true
-        }
+    for (i in sqrt(m.toDouble()).toInt()..sqrt(n.toDouble()).toInt()) {
+        if ((i * i >= m) && (i * i <= n)) return true
     }
     return false
 }
@@ -235,13 +238,13 @@ fun cos(x: Double, eps: Double): Double = TODO()
  * Использовать операции со строками в этой задаче запрещается.
  */
 fun revert(n: Int): Int {
-    var c = 0
-    var num = n
-    while (n > 0) {
-        c = c * 10 + num % 10
-        num /= 10
+    var x = n
+    var m = 0
+    while (x > 0) {
+        m = m * 10 + x % 10
+        x /= 10
     }
-    return c
+    return m
 }
 
 /**
@@ -253,7 +256,19 @@ fun revert(n: Int): Int {
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun isPalindrome(n: Int): Boolean = n == revert(n)
+fun isPalindrome(n: Int): Boolean {
+    var n1 = n
+    var n2 = 0
+    var ans = false
+    while (n1 != 0) {
+        n2 = n2 * 10 + n1 % 10
+        n1 /= 10
+    }
+    if (n == n2) {
+        ans = true
+    }
+    return ans
+}
 
 /**
  * Средняя
@@ -264,15 +279,15 @@ fun isPalindrome(n: Int): Boolean = n == revert(n)
  * Использовать операции со строками в этой задаче запрещается.
  */
 fun hasDifferentDigits(n: Int): Boolean {
-    var num = n
-    val lastNumber = n % 10
-    num /= 10
-    while (num > 0) {
-        if (num / 10 != lastNumber)
-            return true
-        else num /= 10
+    var n1 = n
+    val x = n1 % 10
+    n1 /= 10
+
+    while (n1 > 0 && n1 % 10 == x) {
+        n1 /= 10
     }
-    return false
+
+    return n1 > 0
 }
 
 /**
