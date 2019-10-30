@@ -20,8 +20,15 @@ fun pointInsideCircle(x: Double, y: Double, x0: Double, y0: Double, r: Double) =
  * Четырехзначное число назовем счастливым, если сумма первых двух ее цифр равна сумме двух последних.
  * Определить, счастливое ли заданное число, вернуть true, если это так.
  */
-fun isNumberHappy(number: Int): Boolean =
-    ((number / 1000) + number / 100 % 10 == ((number % 100) % 10 + (number % 10)))
+fun isNumberHappy(number: Int): Boolean {
+    val n1 = number / 1000
+    val n2 = number / 100 - n1 * 10
+    val n3 = number / 10 - n2 * 10 - n1 * 100
+    val n4 = number % 10
+
+    return n1 + n2 == n3 + n4
+}
+
 
 /**
  * Простая
@@ -39,12 +46,21 @@ fun queenThreatens(x1: Int, y1: Int, x2: Int, y2: Int): Boolean = TODO()
  * Дан номер месяца (от 1 до 12 включительно) и год (положительный).
  * Вернуть число дней в этом месяце этого года по григорианскому календарю.
  */
-fun daysInMonth(month: Int, year: Int): Int = when {
-    (month == 2) && (year % 400 == 0) && (year % 4 == 0) -> 29
-    (month == 2) && (year % 4 != 0) -> 28
-    ((month % 2 != 0) || (month % 8 != 0) || (month % 12 != 0)) && (month != 9) && (month != 11) -> 31
-    else -> 30
+fun daysInMonth(month: Int, year: Int): Int = when (month) {
+    1 -> 31
+    2 -> if (((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0)) 29 else 28
+    3 -> 31
+    4 -> 30
+    5 -> 31
+    6 -> 30
+    7 -> 31
+    8 -> 31
+    9 -> 30
+    10 -> 31
+    11 -> 30
+    else -> 31
 }
+
 
 /**
  * * Средняя
@@ -56,11 +72,7 @@ fun daysInMonth(month: Int, year: Int): Int = when {
 fun circleInside(
     x1: Double, y1: Double, r1: Double,
     x2: Double, y2: Double, r2: Double
-): Boolean {
-    val r = (sqrt(sqr(x1 - x2) + sqr(y1 - y2)))
-    return (if ((r + r1) <= r2) true
-    else 0) as Boolean
-}
+): Boolean = sqrt(sqr(x2 - x1) + sqr(y2 - y1)) + r1 <= r2
 
 /**
  * Средняя
@@ -71,19 +83,8 @@ fun circleInside(
  * кирпич 4 х 4 х 4 пройдёт через отверстие 4 х 4.
  * Вернуть true, если кирпич пройдёт
  */
-fun brickPasses(a: Int, b: Int, c: Int, r: Int, s: Int): Boolean {
-    val x1 = min(a, b)
-    val x2 = min(b, c)
-    val x3 = min(a, c)
-    return (if ((x1 == x2) && ((x1 * x3) <= (r * s))) true
-    else {
-        if ((x1 == x3) && ((x1 * x2) <= (r * s))) true
-        else {
-            if ((x2 == x3) && ((x1 * x2) <= (r * s))) true
-            else 0
-        }
-    }) as Boolean
-}
+fun brickPasses(a: Int, b: Int, c: Int, r: Int, s: Int) =
+    a <= r && (b <= s || c <= s) || b <= r && (a <= s || c <= s) || c <= r && (a <= s || b <= s)
 
 
 
