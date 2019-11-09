@@ -127,17 +127,13 @@ fun rookOrBishopThreatens(
  * прямоугольным (вернуть 1) или тупоугольным (вернуть 2).
  * Если такой треугольник не существует, вернуть -1.
  */
-fun triangleKind(a: Double, b: Double, c: Double): Int {
-    val x = max(a, b)
-    val longestSide = max(c, x)
-    val y = (a + b + c - longestSide) / 2
-    return when {
-        sqr(x) < (2 * sqr(y)) -> 0
-        sqr(x) > (2 * sqr(y)) -> 2
-        sqr(x) == (2 * sqr(y)) -> 1
-        else -> -1
-    }
+fun triangleKind(a: Double, b: Double, c: Double) = when {
+    (a + b < c) || (a + c < b) || (b + c < a) -> -1
+    sqr(a) + sqr(b) + sqr(c) - sqr(maxOf(a, b, c)) == sqr(maxOf(a, b, c)) -> 1
+    sqr(a) + sqr(b) + sqr(c) - sqr(maxOf(a, b, c)) < sqr(maxOf(a, b, c)) -> 2
+    else -> 0
 }
+
 
 /**
  * Средняя
