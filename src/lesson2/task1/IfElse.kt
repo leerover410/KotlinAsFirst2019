@@ -3,6 +3,7 @@
 package lesson2.task1
 
 import lesson1.task1.discriminant
+import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.sqrt
 import lesson1.task1.sqr as sqr
@@ -64,7 +65,14 @@ fun minBiRoot(a: Double, b: Double, c: Double): Double {
  * Мой возраст. Для заданного 0 < n < 200, рассматриваемого как возраст человека,
  * вернуть строку вида: «21 год», «32 года», «12 лет».
  */
-fun ageDescription(age: Int): String = TODO()
+fun ageDescription(age: Int): String {
+    return if (age % 100 in 10..20) "$age лет"
+    else when {
+        age % 10 == 1 -> "$age год"
+        age % 10 in 2..4 -> "$age года"
+        else -> "$age лет"
+    }
+}
 
 /**
  * Простая
@@ -101,7 +109,12 @@ fun whichRookThreatens(
     kingX: Int, kingY: Int,
     rookX1: Int, rookY1: Int,
     rookX2: Int, rookY2: Int
-): Int = TODO()
+): Int = when {
+    kingX != rookX1 && kingX != rookX2 && kingY != rookY1 && kingY != rookY2 -> 0
+    (kingX == rookX1 || kingY == rookY1) && (kingX != rookX2 && kingY != rookY2) -> 1
+    (kingX == rookX2 || kingY == rookY2) && (kingX != rookX1 && kingY != rookY1) -> 2
+    else -> 3
+}
 
 /**
  * Простая
@@ -117,7 +130,16 @@ fun rookOrBishopThreatens(
     kingX: Int, kingY: Int,
     rookX: Int, rookY: Int,
     bishopX: Int, bishopY: Int
-): Int = TODO()
+): Int {
+    val rook = (rookX == kingX || rookY == kingY)
+    val bishop = (abs(bishopX - kingX) == abs(bishopY - kingY))
+    return when {
+        !rook && !bishop -> 0
+        rook && !bishop -> 1
+        !rook && bishop -> 2
+        else -> 3
+    }
+}
 
 /**
  * Простая
@@ -133,7 +155,6 @@ fun triangleKind(a: Double, b: Double, c: Double) = when {
     sqr(a) + sqr(b) + sqr(c) - sqr(maxOf(a, b, c)) < sqr(maxOf(a, b, c)) -> 2
     else -> 0
 }
-
 
 /**
  * Средняя
