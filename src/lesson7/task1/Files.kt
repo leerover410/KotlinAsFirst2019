@@ -70,7 +70,16 @@ fun countSubstrings(inputName: String, substrings: List<String>): Map<String, In
  *
  */
 fun sibilants(inputName: String, outputName: String) {
-    TODO()
+    val a = File(inputName).readText()
+        .replace(Regex("""(?<=[ЖжЧчШшЩщ])Ы"""), "И")
+        .replace(Regex("""(?<=[ЖжЧчШшЩщ])ы"""), "и")
+        .replace(Regex("""(?<=[ЖжЧчШшЩщ])Ю"""), "У")
+        .replace(Regex("""(?<=[ЖжЧчШшЩщ])ю"""), "у")
+        .replace(Regex("""(?<=[ЖжЧчШшЩщ])Я"""), "А")
+        .replace(Regex("""(?<=[ЖжЧчШшЩщ])я"""), "а")
+    val b = File(outputName).bufferedWriter()
+    b.write(a)
+    b.close()
 }
 
 /**
