@@ -103,16 +103,16 @@ fun thirdDigit(number: Int): Int = (number / 100) % 10
  * Определите время поезда в пути в минутах (в данном случае 216).
  */
 fun travelMinutes(hoursDepart: Int, minutesDepart: Int, hoursArrive: Int, minutesArrive: Int): Int {
-    var x3 = hoursArrive
+    var a = hoursArrive
     return if (minutesArrive < minutesDepart) {
-        x3 = x3.minus(1)
-        if (x3 < hoursDepart) {
+        a = a.minus(1)
+        if (a < hoursDepart) {
             (minutesArrive + 60) - minutesDepart
         } else {
-            (x3 - hoursDepart) * 60 + (minutesArrive + 60) - minutesDepart
+            (a - hoursDepart) * 60 + (minutesArrive + 60) - minutesDepart
         }
     } else {
-        (x3 - hoursDepart) * 60 + (minutesArrive - minutesDepart)
+        (a - hoursDepart) * 60 + (minutesArrive - minutesDepart)
     }
 }
 
@@ -124,8 +124,8 @@ fun travelMinutes(hoursDepart: Int, minutesDepart: Int, hoursArrive: Int, minute
  * Например, 100 рублей под 10% годовых превратятся в 133.1 рубля
  */
 fun accountInThreeYears(initial: Int, percent: Int): Double {
-    val x = 1 + percent.toDouble() / 100
-    return initial * x * x * x
+    val a = 1 + percent.toDouble() / 100
+    return initial * a * a * a
 }
 
 /**
@@ -135,8 +135,8 @@ fun accountInThreeYears(initial: Int, percent: Int): Double {
  * Необходимо вывести число, полученное из заданного перестановкой цифр в обратном порядке (например, 874).
  */
 fun numberRevert(number: Int): Int {
-    val x2 = number % 10
-    val x3 = (number % 100) - x2
-    val x4 = number / 100
-    return (x2 * 100) + x3 + x4
+    val a = number % 10
+    val b = (number % 100) - a
+    val c = number / 100
+    return (a * 100) + b + c
 }

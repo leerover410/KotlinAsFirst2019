@@ -116,10 +116,10 @@ fun buildSumExample(list: List<Int>) = list.joinToString(separator = " + ", post
  * Модуль пустого вектора считать равным 0.0.
  */
 fun abs(v: List<Double>): Double {
-    var abs = 0.0
+    var a = 0.0
     for (i in v)
-        abs += i * i
-    return sqrt(abs)
+        a += i * i
+    return sqrt(a)
 }
 
 /**

@@ -72,13 +72,13 @@ fun digitCountInNumber(n: Int, m: Int): Int =
  */
 fun digitNumber(n: Int): Int {
     if (n == 0) return 1
-    var c = 0
+    var a = 0
     var num = n
     while (num != 0) {
-        c++
+        a++
         num /= 10
     }
-    return c
+    return a
 }
 
 /**
@@ -127,11 +127,11 @@ fun lcm(m: Int, n: Int): Int {
  * Для заданного числа n > 1 найти минимальный делитель, превышающий 1
  */
 fun minDivisor(n: Int): Int {
-    var x = 2
-    while (n % x != 0) {
-        x += 1
+    var a = 2
+    while (n % a != 0) {
+        a += 1
     }
-    return x
+    return a
 }
 
 /**
@@ -140,11 +140,11 @@ fun minDivisor(n: Int): Int {
  * Для заданного числа n > 1 найти максимальный делитель, меньший n
  */
 fun maxDivisor(n: Int): Int {
-    var x = n - 1
-    while (n % x != 0) {
-        x += -1
+    var a = n - 1
+    while (n % a != 0) {
+        a += -1
     }
-    return x
+    return a
 }
 
 /**
@@ -195,17 +195,17 @@ fun squareBetweenExists(m: Int, n: Int): Boolean {
  * этого для какого-либо начального X > 0.
  */
 fun collatzSteps(x: Int): Int {
-    var y = x
-    var c = 0
-    while (y != 1) {
-        c += 1
-        if (y % 2 == 0) {
-            y /= 2
+    var a = x
+    var b = 0
+    while (a != 1) {
+        b += 1
+        if (a % 2 == 0) {
+            a /= 2
         } else {
-            y = 3 * y + 1
+            a = 3 * a + 1
         }
     }
-    return c
+    return b
 }
 
 /**
@@ -238,13 +238,13 @@ fun cos(x: Double, eps: Double): Double = TODO()
  * Использовать операции со строками в этой задаче запрещается.
  */
 fun revert(n: Int): Int {
-    var x = n
-    var m = 0
-    while (x > 0) {
-        m = m * 10 + x % 10
-        x /= 10
+    var a = n
+    var b = 0
+    while (a > 0) {
+        b = b * 10 + a % 10
+        a /= 10
     }
-    return m
+    return b
 }
 
 /**
@@ -257,14 +257,14 @@ fun revert(n: Int): Int {
  * Использовать операции со строками в этой задаче запрещается.
  */
 fun isPalindrome(n: Int): Boolean {
-    var n1 = n
-    var n2 = 0
+    var a = n
+    var b = 0
     var ans = false
-    while (n1 != 0) {
-        n2 = n2 * 10 + n1 % 10
-        n1 /= 10
+    while (a != 0) {
+        b = b * 10 + a % 10
+        a /= 10
     }
-    if (n == n2) {
+    if (n == b) {
         ans = true
     }
     return ans

@@ -86,13 +86,13 @@ fun timeForHalfWay(
     t2: Double, v2: Double,
     t3: Double, v3: Double
 ): Double {
-    val s = (v1 * t1 + v2 * t2 + v3 * t3) / 2
-    val s1 = v1 * t1
-    val s2 = v2 * t2
+    val a = (v1 * t1 + v2 * t2 + v3 * t3) / 2
+    val b = v1 * t1
+    val c = v2 * t2
     return when {
-        s1 > s -> s / v1
-        s1 + s2 > s -> (s - s1) / v2 + t1
-        else -> t1 + t2 + (s - s1 - s2) / v3
+        b > a -> a / v1
+        b + c > a -> (a - b) / v2 + t1
+        else -> t1 + t2 + (a - b - c) / v3
     }
 }
 
