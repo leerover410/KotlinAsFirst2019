@@ -2,6 +2,8 @@
 
 package lesson6.task1
 
+import lesson2.task2.daysInMonth
+
 /**
  * Пример
  *
@@ -69,7 +71,35 @@ fun main() {
  * Обратите внимание: некорректная с точки зрения календаря дата (например, 30.02.2009) считается неверными
  * входными данными.
  */
-fun dateStrToDigit(str: String): String = TODO()
+val months = listOf(
+    "январь",
+    "февраль",
+    "март",
+    "апрель",
+    "май",
+    "июнь",
+    "июль",
+    "август",
+    "сентябрь",
+    "октябрь",
+    "ноябрь",
+    "декабрь"
+)
+
+fun dateStrToDigit(str: String): String {
+    val a = str.split(" ")
+    if (a.size != 3) return ""
+    if (!str.matches(Regex("""\d*\s[а-я]{3,8}\s\d*"""))) return ""
+    val day = a[0].toInt()
+    val year = a[2].toInt()
+    val month: Int
+    if (a[1] in months) {
+        month = (months.indexOf(a[1]) + 1)
+    } else return ""
+    if (day > daysInMonth(month, year)) return ""
+    return String.format("%02d.%02d.%d", day, month, year)
+
+}
 
 /**
  * Средняя
